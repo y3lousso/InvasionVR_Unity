@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretTrigger : MonoBehaviour {
+public class CharacterTrigger : MonoBehaviour {
 
-    private Turret turret;
+    private Character character;
     
 	// Use this for initialization
 	void Start () {
-        turret = GetComponentInParent<Turret>();
+        character = GetComponentInParent<Character>();
     }
 	
 	// Update is called once per frame
@@ -20,7 +20,7 @@ public class TurretTrigger : MonoBehaviour {
     {
         if (col.GetComponent<Enemy>() != null)
         {
-            turret.enemiesInRange.Add(col.GetComponent<Enemy>());
+            character.enemiesInRange.Add(col.GetComponent<Enemy>());
         }
     }
 
@@ -28,7 +28,7 @@ public class TurretTrigger : MonoBehaviour {
     {
         if (col.GetComponent<Enemy>() != null)
         {
-            turret.enemiesInRange.Remove(col.GetComponent<Enemy>());
+            character.enemiesInRange.Remove(col.GetComponent<Enemy>());
         }
     }
 

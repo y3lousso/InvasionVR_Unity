@@ -5,7 +5,6 @@ using UnityEngine;
 public class VillageManager : MonoBehaviour {
 
     private Level level;
-    private NpcManager npcManager;
 
     [Header("Village spec")]
     public int hp = 100;
@@ -33,8 +32,6 @@ public class VillageManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         level = GetComponentInParent<Level>();
-        npcManager = GetComponentInChildren<NpcManager>();
-
     }
 	
 	// Update is called once per frame
