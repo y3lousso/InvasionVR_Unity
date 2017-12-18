@@ -50,12 +50,12 @@ public class SplineDecorator : MonoBehaviour {
                 
                 Debug.Log("Normal : " + p * stepSize);
                 Debug.Log("Modifier : " + FloatArrayExtension.Sample(spline.ptsDistances, p * stepSize));
-               Vector3 position = spline.GetPoint(FloatArrayExtension.Sample(spline.ptsDistances, p * stepSize)/5);
+                Vector3 position = spline.GetPoint(FloatArrayExtension.Sample(spline.ptsDistances, p * stepSize));
                 Vector3 position1 = spline.GetPoint( p * stepSize);
-                go.transform.localPosition = position;
+                go.transform.localPosition = position1;
                 if (lookForward)
                 {
-                    go.transform.LookAt(position + spline.GetTangent(p * stepSize));
+                    go.transform.LookAt(position1 + spline.GetTangent(p * stepSize));
                 }
                 go.transform.parent = transform;
             }

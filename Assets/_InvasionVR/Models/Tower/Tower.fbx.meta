@@ -1,60 +1,36 @@
 fileFormatVersion: 2
-guid: 653bb9d3029eda746bfaf5728237ef78
-timeCreated: 1499526085
+guid: 00c3f6ed9d19c3247823a2fc5f2f674c
+timeCreated: 1513613802
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Camera
-    100004: Cylinder
-    100006: Lamp
-    100008: Rocks
-    100010: TownHall
-    400000: //RootNode
-    400002: Camera
-    400004: Cylinder
-    400006: Lamp
-    400008: Rocks
-    400010: TownHall
-    2300000: //RootNode
-    2300002: Cylinder
-    2300004: Rocks
-    2300006: TownHall
-    3300000: //RootNode
-    3300002: Cylinder
-    3300004: Rocks
-    3300006: TownHall
-    4300000: Room
-    4300002: Cylinder
-    4300004: Rocks
-    4300006: TownHall
+    100000: Camera
+    100002: Cylinder
+    100004: Lamp
+    100006: //RootNode
+    400000: Camera
+    400002: Cylinder
+    400004: Lamp
+    400006: //RootNode
+    2000000: Camera
+    2300000: Cylinder
+    2300002: //RootNode
+    3300000: Cylinder
+    3300002: //RootNode
+    4300000: Cylinder
+    10800000: Lamp
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Rocks
-    second: {fileID: 2100000, guid: 50e576f6a86e0a648a0f5586e60d1b05, type: 2}
+      name: Tower_MainColor
+    second: {fileID: 2100000, guid: 8bfce5238e2b74e45aefc7a6e5b1a0e8, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Room_Roof
-    second: {fileID: 2100000, guid: 89fe597a0f1b12e4292dee390b65552f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: TownHall00
-    second: {fileID: 2100000, guid: 11517035e1fc4664f9c50380ef8bf8b0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: TownHall01
-    second: {fileID: 2100000, guid: f89cd28765034f7408fecc45854ef08c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: TownHall02
-    second: {fileID: 2100000, guid: 5bbcc745ec95e3b45851dd26a593bb76, type: 2}
+      name: Tower_SecondColor
+    second: {fileID: 2100000, guid: 3c69f694895693944b142ff438e898a4, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -87,10 +63,10 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    importVisibility: 0
+    importVisibility: 1
     importBlendShapes: 1
-    importCameras: 0
-    importLights: 0
+    importCameras: 1
+    importLights: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -106,7 +82,7 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
-    normalCalculationMode: 0
+    normalCalculationMode: 4
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
