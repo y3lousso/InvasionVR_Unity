@@ -19,7 +19,6 @@ public class Bomber : Character
 
     public void ThrowBomb()
     {
-        Debug.Log("bomb");
         Fire();
     }
 }

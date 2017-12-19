@@ -143,10 +143,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetEnemy: {fileID: 0}
-  damage: 50
+  damage: 100
   damageType: 0
   lifeTime: 10
-  arrowSpeed: 5
+  speed: 3
 --- !u!135 &135193086880488904
 SphereCollider:
   m_ObjectHideFlags: 1

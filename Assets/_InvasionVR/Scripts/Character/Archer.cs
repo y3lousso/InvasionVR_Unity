@@ -18,12 +18,12 @@ public class Archer : Character {
 
     public void GrabArrow()
     {
-        Debug.Log("grab");
+
     }
 
     public void ShootArrow()
     {
-        Debug.Log("shoot");
+
         Fire();
     }
 }

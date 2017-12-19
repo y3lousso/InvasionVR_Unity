@@ -135,7 +135,6 @@ public class Enemy : MonoBehaviour {
         if(damageType == DamageType.Physical)
         {
             hp -=(int)(damage * (1 - armor / 100f));
-            Debug.Log("-hp :" + (damage * (1 - armor / 100)).ToString() );
         }
         else if(damageType == DamageType.Magic)
         {

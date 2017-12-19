@@ -48,11 +48,14 @@ public class Character : MonoBehaviour {
         if (enemiesInRange.Count > 0)
         {
             animator.SetBool("IsAttacking", true);
-            SelectClosestTarget();           
-            var rotation = Quaternion.LookRotation(currentTarget.transform.position - transform.position);
-            rotation.x = 0;
-            rotation.z = 0;
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
+            SelectClosestTarget();
+            if (currentTarget != null)
+            {
+                var rotation = Quaternion.LookRotation(currentTarget.transform.position - transform.position);
+                rotation.x = 0;
+                rotation.z = 0;
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
+            }
         }
         else
         {

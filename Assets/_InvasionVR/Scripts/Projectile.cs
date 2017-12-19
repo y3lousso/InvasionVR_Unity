@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     public int damage;
     public DamageType damageType = DamageType.Physical;
     public float lifeTime = 10f;
-    public float arrowSpeed = 5f;
+    public float speed = 5f;
 
     // Use this for initialization
     void Start()
@@ -25,7 +25,7 @@ public class Projectile : MonoBehaviour
         {
             Vector3 dir = (targetEnemy.transform.position + new Vector3(0, .2f, 0) - transform.position).normalized;
             transform.rotation = Quaternion.LookRotation(dir);
-            GetComponent<Rigidbody>().AddForce(arrowSpeed * transform.forward);
+            GetComponent<Rigidbody>().AddForce(speed * transform.forward);
         }
         else
         {

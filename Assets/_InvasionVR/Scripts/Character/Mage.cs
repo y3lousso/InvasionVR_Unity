@@ -17,7 +17,6 @@ public class Mage : Character
 
     public void CastSpell()
     {
-        Debug.Log("castSpell");
         Fire();
     }
 }
