@@ -5,6 +5,7 @@ using UnityEngine;
 public class VillageManager : MonoBehaviour {
 
     private Level level;
+    private LakeManager lakeManager;
 
     [Header("Village spec")]
     public int hp = 100;

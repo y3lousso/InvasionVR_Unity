@@ -60,10 +60,6 @@ public class SplineDecorator2D : MonoBehaviour {
         }
 
         mesh.Clear();
-        foreach(var i in vertices)
-        {
-            Debug.Log(i);
-        }
         mesh.vertices = vertices;
         mesh.triangles = triangleIndices;
         mesh.normals = normals;
