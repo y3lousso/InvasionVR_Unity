@@ -2,28 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Archer : Character {
-
+public class MineManager : WorkPlaceManager
+{
     // Use this for initialization
-    public override void Start()
+    protected override void Start()
     {
         base.Start();
     }
 
     // Update is called once per frame
-    public override void Update()
+    protected override void Update()
     {
         base.Update();
     }
 
-    public void GrabArrow()
-    {
-
-    }
-
-    public void ShootArrow()
-    {
-
-        Fire();
-    }
 }

@@ -6,6 +6,8 @@ public class VillageManager : MonoBehaviour {
 
     private Level level;
     private LakeManager lakeManager;
+    private ForestManager forestManager;
+    private MineManager mineManager;
 
     [Header("Village spec")]
     public int hp = 100;
@@ -33,6 +35,14 @@ public class VillageManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         level = GetComponentInParent<Level>();
+
+        lakeManager = GetComponentInChildren<LakeManager>();        
+        forestManager = GetComponentInChildren<ForestManager>();
+        mineManager = GetComponentInChildren<MineManager>();
+
+        lakeManager.SetVillageManager(this);
+        forestManager.SetVillageManager(this);
+        mineManager.SetVillageManager(this);
     }
 	
 	// Update is called once per frame

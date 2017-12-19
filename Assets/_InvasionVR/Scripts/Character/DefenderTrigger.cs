@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterTrigger : MonoBehaviour {
+public class DefenderTrigger : MonoBehaviour {
 
-    private Character character;
+    private Defender defender;
     
 	// Use this for initialization
 	void Start () {
-        character = GetComponentInParent<Character>();
+        defender = GetComponentInParent<Defender>();
     }
 	
 	// Update is called once per frame
@@ -20,7 +20,7 @@ public class CharacterTrigger : MonoBehaviour {
     {
         if (col.GetComponent<Enemy>() != null)
         {
-            character.enemiesInRange.Add(col.GetComponent<Enemy>());
+            defender.enemiesInRange.Add(col.GetComponent<Enemy>());
         }
     }
 
@@ -28,7 +28,7 @@ public class CharacterTrigger : MonoBehaviour {
     {
         if (col.GetComponent<Enemy>() != null)
         {
-            character.enemiesInRange.Remove(col.GetComponent<Enemy>());
+            defender.enemiesInRange.Remove(col.GetComponent<Enemy>());
         }
     }
 

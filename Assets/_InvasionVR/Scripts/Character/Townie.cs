@@ -4,28 +4,31 @@ using UnityEngine;
 
 public class Townie : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    public void FishingEnd()
+    protected WorkPlace workPlace;
+    protected Animator animator;
+   
+    // Use this for initialization
+    protected virtual void Start()
     {
-        Debug.Log("fishing");
+        
     }
 
-    public void ChoppingEnd()
+    // Update is called once per frame
+    protected virtual void Update()
     {
-        Debug.Log("chopping");
+
     }
 
-    public void MiningEnd()
+    public virtual void StartWork()
     {
-        Debug.Log("mining");
+
     }
+
+    public virtual void StopWork()
+    {
+        
+    }
+
+    public void SetWorkPlace(WorkPlace _workPlace) { workPlace = _workPlace; }
+  
 }

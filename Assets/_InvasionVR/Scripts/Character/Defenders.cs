@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour {
+public class Defender : MonoBehaviour {
 
     [Header("Trigger")]
     public List<Enemy> enemiesInRange = new List<Enemy>();
     public Enemy currentTarget;
-    private CharacterTrigger characterTrigger;
+    private DefenderTrigger defenderTrigger;
     public float rotationSpeed = 20f;
 
     //[Header("Animator")]
@@ -39,7 +39,7 @@ public class Character : MonoBehaviour {
     // Use this for initialization
     public virtual void Start()
     {
-        characterTrigger = GetComponentInChildren<CharacterTrigger>();
+        defenderTrigger = GetComponentInChildren<DefenderTrigger>();
         animator = GetComponent<Animator>();
     }
 
@@ -82,5 +82,7 @@ public class Character : MonoBehaviour {
             }
         }
     }
+
+
 
 }
