@@ -944,6 +944,8 @@ GameObject:
   - component: {fileID: 4374057916567284}
   - component: {fileID: 95587464111589572}
   - component: {fileID: 114641994133372838}
+  - component: {fileID: 136241174733391274}
+  - component: {fileID: 54815538750760586}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -2219,6 +2221,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1001454384969438}
   m_Mesh: {fileID: 4300000, guid: f7d5bd2cef95125449871567fb789019, type: 3}
+--- !u!54 &54815538750760586
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1912676391309546}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!95 &95100326340731990
 Animator:
   serializedVersion: 3
@@ -2294,6 +2311,19 @@ MonoBehaviour:
   currentWaypoint: 0
   rotationSpeed: 5
   remainingDistanceBeforeVillage: Infinity
+--- !u!136 &136241174733391274
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1912676391309546}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.96
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.89, z: 0}
 --- !u!137 &137037100758633976
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

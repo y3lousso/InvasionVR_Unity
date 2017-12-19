@@ -13,4 +13,19 @@ public class Townie : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void FishingEnd()
+    {
+        Debug.Log("fishing");
+    }
+
+    public void ChoppingEnd()
+    {
+        Debug.Log("chopping");
+    }
+
+    public void MiningEnd()
+    {
+        Debug.Log("mining");
+    }
 }

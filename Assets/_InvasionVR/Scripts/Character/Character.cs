@@ -7,11 +7,11 @@ public class Character : MonoBehaviour {
     [Header("Trigger")]
     public List<Enemy> enemiesInRange = new List<Enemy>();
     public Enemy currentTarget;
-    public CharacterTrigger characterTrigger;
+    private CharacterTrigger characterTrigger;
     public float rotationSpeed = 20f;
 
-    [Header("Animator")]
-    public Animator animator;
+    //[Header("Animator")]
+    private Animator animator;
     //public float animationSpeed;
 
     [Header("Attack")]
@@ -40,6 +40,7 @@ public class Character : MonoBehaviour {
     public virtual void Start()
     {
         characterTrigger = GetComponentInChildren<CharacterTrigger>();
+        animator = GetComponent<Animator>();
     }
 
     public virtual void Update()
@@ -47,16 +48,11 @@ public class Character : MonoBehaviour {
         if (enemiesInRange.Count > 0)
         {
             animator.SetBool("IsAttacking", true);
-            float closestRange = Mathf.Infinity;
-            for (int i = 0; i < enemiesInRange.Count; i++)
-            {
-                if (enemiesInRange[i].remainingDistanceBeforeVillage < closestRange)
-                {
-                    closestRange = enemiesInRange[i].remainingDistanceBeforeVillage;
-                    currentTarget = enemiesInRange[i];
-                }
-            }
-            
+            SelectClosestTarget();           
+            var rotation = Quaternion.LookRotation(currentTarget.transform.position - transform.position);
+            rotation.x = 0;
+            rotation.z = 0;
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
         }
         else
         {
@@ -68,11 +64,23 @@ public class Character : MonoBehaviour {
     protected void Fire()
     {
         GameObject currentProjectile = Instantiate(projectile, projectileSpawn.position, projectileSpawn.rotation);
-        currentProjectile.transform.rotation = Quaternion.LookRotation(currentTarget.transform.position - projectile.transform.position);
-        Rigidbody rbProjectile = currentProjectile.AddComponent<Rigidbody>();
-        rbProjectile.isKinematic = false;
-        rbProjectile.useGravity = false;
-        rbProjectile.AddForce(100f * (currentTarget.transform.position - projectile.transform.position).normalized);
         projectile.GetComponent<Projectile>().targetEnemy = currentTarget;
+        Debug.Log(currentTarget.name);
+        Debug.Log(projectile.GetComponent<Projectile>().targetEnemy.name);
+        projectile.GetComponent<Projectile>().enable = true;
     }
+
+    private void SelectClosestTarget()
+    {
+        float closestRange = Mathf.Infinity;
+        for (int i = 0; i < enemiesInRange.Count; i++)
+        {
+            if (enemiesInRange[i].remainingDistanceBeforeVillage < closestRange)
+            {
+                closestRange = enemiesInRange[i].remainingDistanceBeforeVillage;
+                currentTarget = enemiesInRange[i];
+            }
+        }
+    }
+
 }
