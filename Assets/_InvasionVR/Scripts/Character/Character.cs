@@ -64,10 +64,7 @@ public class Character : MonoBehaviour {
     protected void Fire()
     {
         GameObject currentProjectile = Instantiate(projectile, projectileSpawn.position, projectileSpawn.rotation);
-        projectile.GetComponent<Projectile>().targetEnemy = currentTarget;
-        Debug.Log(currentTarget.name);
-        Debug.Log(projectile.GetComponent<Projectile>().targetEnemy.name);
-        projectile.GetComponent<Projectile>().enable = true;
+        currentProjectile.GetComponent<Projectile>().targetEnemy = currentTarget;
     }
 
     private void SelectClosestTarget()

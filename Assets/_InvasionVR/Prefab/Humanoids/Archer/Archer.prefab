@@ -2757,7 +2757,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesInRange: []
   currentTarget: {fileID: 0}
-  characterTrigger: {fileID: 0}
   rotationSpeed: 20
   projectile: {fileID: 1725795151957926, guid: 71ad333c5ccbb0f42bf2e082b1021780, type: 2}
   projectileSpawn: {fileID: 4111553854166868}

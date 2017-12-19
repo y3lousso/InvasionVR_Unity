@@ -14,4 +14,10 @@ public class Mage : Character
     public override void Update() {
         base.Update();
     }
+
+    public void CastSpell()
+    {
+        Debug.Log("castSpell");
+        Fire();
+    }
 }
