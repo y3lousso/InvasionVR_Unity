@@ -21,7 +21,7 @@ public class Projectile : MonoBehaviour
     {
         lifeTime -= Time.deltaTime;
 
-        if (lifeTime <= 0 || targetEnemy != null)
+        if (targetEnemy.state != EnemyState.Dead && lifeTime >= 0)
         {
             Vector3 dir = (targetEnemy.transform.position + new Vector3(0, .2f, 0) - transform.position).normalized;
             transform.rotation = Quaternion.LookRotation(dir);
@@ -38,7 +38,7 @@ public class Projectile : MonoBehaviour
         if (other.GetComponent<Enemy>() == targetEnemy)
         {
             targetEnemy.ReceivedDamage(damage, damageType);
-            Destroy(gameObject);
+            Destroy(gameObject);          
         }
     }
 

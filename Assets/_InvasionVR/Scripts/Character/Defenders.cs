@@ -75,7 +75,7 @@ public class Defender : MonoBehaviour {
         float closestRange = Mathf.Infinity;
         for (int i = 0; i < enemiesInRange.Count; i++)
         {
-            if (enemiesInRange[i].remainingDistanceBeforeVillage < closestRange)
+            if (enemiesInRange[i].remainingDistanceBeforeVillage < closestRange && enemiesInRange[i].state != EnemyState.Dead)
             {
                 closestRange = enemiesInRange[i].remainingDistanceBeforeVillage;
                 currentTarget = enemiesInRange[i];

@@ -38,6 +38,10 @@ public class Enemy : MonoBehaviour {
     public float rotationSpeed = 5.0f;
     public float remainingDistanceBeforeVillage = Mathf.Infinity;
 
+    [Header("State")]
+    public EnemyState state;
+    public Animator animator;
+
 
     Vector3 lastPosition;
     Vector3 currentPosition;
@@ -71,67 +75,28 @@ public class Enemy : MonoBehaviour {
     // Use this for initialization
     void Start () {
         lastPosition = transform.position;
-	}
+        animator = GetComponent<Animator>();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (!destinationReached)
+        if (!destinationReached && state == EnemyState.Walking)
         {
-            float distance = Vector3.Distance(pathToFollow.waypoints[currentWaypoint], transform.position);
-            transform.position = Vector3.MoveTowards(transform.position, pathToFollow.waypoints[currentWaypoint], Time.deltaTime * moveSpeed);
+            // Walking routine
+            WalkingAlongPath();
 
-            var rotation = Quaternion.LookRotation(pathToFollow.waypoints[currentWaypoint] - transform.position);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
-
-            remainingDistanceBeforeVillage = Vector3.Distance(pathToFollow.waypoints[currentWaypoint], transform.position);
-            for (int i = currentWaypoint; i < pathToFollow.waypoints.Count-1; i++)
-            {
-                remainingDistanceBeforeVillage += pathToFollow.distanceBetweenWaypoints[i];
-            }
-
-            if (distance <= reachDist)
-            {
-                currentWaypoint++;
-            }
-
+            // If the enemy reach the village
             if (currentWaypoint >= pathToFollow.waypoints.Count)
             {
-                EnemyReachVillage();
+                OnEnemyAttackSender(SetEnemyEventArgs());
                 destinationReached = true;
             }
         }
     }
 
-
-
-    public void EnemyReachVillage()
-    {
-        // emit event
-        StartCoroutine(AttackVillage());
-    }
-
-    public void KillEnemy()
-    {
-        // emit enemy death (gold)
-        OnEnemyDieSender(SetEnemyEventArgs());
-        StopCoroutine(AttackVillage());
-        Destroy(gameObject);
-    }
-
-    private IEnumerator AttackVillage()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(1f / attackSpeed);
-            // Attack animation
-            OnEnemyAttackSender(SetEnemyEventArgs());
-        }
-    }
-
     public void ReceivedDamage(int damage, DamageType damageType)
-    {
-        
+    {       
         if(damageType == DamageType.Physical)
         {
             hp -=(int)(damage * (1 - armor / 100f));
@@ -142,11 +107,72 @@ public class Enemy : MonoBehaviour {
         }
         if (hp <= 0)
         {
-            OnEnemyDieSender(SetEnemyEventArgs());
-            //DeathAnimation
-            Destroy(gameObject, .1f);
+            StartCoroutine("DeathCoroutine");
         }
     }
+
+
+
+    public void ChangeState(EnemyState _state)
+    {
+        switch (_state)
+        {
+            case (EnemyState.Walking):
+                state = _state;
+                animator.SetBool("IsAttacking", false);
+                break;
+            case (EnemyState.Attacking):
+                state = _state;
+                animator.SetBool("IsAttacking", true);
+                break;
+            case (EnemyState.Dead):
+                state = _state;
+                animator.SetBool("IsAttacking", false);
+                animator.SetBool("IsDead", true);
+                break;
+            default:
+                new System.Exception("Undefined state.");
+                break;
+        }
+    }
+
+    private void WalkingAlongPath()
+    {
+        float distance = Vector3.Distance(pathToFollow.waypoints[currentWaypoint], transform.position);
+        transform.position = Vector3.MoveTowards(transform.position, pathToFollow.waypoints[currentWaypoint], Time.deltaTime * moveSpeed);
+
+        var rotation = Quaternion.LookRotation(pathToFollow.waypoints[currentWaypoint] - transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationSpeed);
+
+        remainingDistanceBeforeVillage = Vector3.Distance(pathToFollow.waypoints[currentWaypoint], transform.position);
+        for (int i = currentWaypoint; i < pathToFollow.waypoints.Count - 1; i++)
+        {
+            remainingDistanceBeforeVillage += pathToFollow.distanceBetweenWaypoints[i];
+        }
+        if (distance <= reachDist)
+        {
+            currentWaypoint++;
+        }
+    }
+
+    public IEnumerator DeathCoroutine()
+    {
+        OnEnemyDieSender(SetEnemyEventArgs());
+        ChangeState(EnemyState.Dead);
+        GetComponent<Collider>().enabled = false;
+        yield return new WaitForSeconds(2);
+        float t = 0;
+        float timeStep = 0.05f;
+        while (t <= 1f)
+        {
+            yield return new WaitForSeconds(timeStep);
+            t += timeStep;
+            transform.position -= new Vector3(0, 0.1f * timeStep, 0);
+        }
+        Destroy(gameObject);
+        yield return null;
+    }
+
 
 }
 
@@ -154,4 +180,11 @@ public enum EnemyType
 {
     Ground,
     Air
+}
+
+public enum EnemyState
+{
+    Walking,
+    Attacking,
+    Dead
 }
