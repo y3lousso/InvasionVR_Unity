@@ -7,17 +7,18 @@ public class Chopper : Townie
     // Use this for initialization
     protected override void Start()
     {
-
+        base.Start();
     }
 
     // Update is called once per frame
     protected override void Update()
     {
-
+        base.Update();
     }
 
     public override void StartWork()
     {
+        Start();
         animator.SetBool("IsChopping", true);
     }
 
@@ -26,7 +27,7 @@ public class Chopper : Townie
         animator.SetBool("IsChopping", false);
     }
 
-    public void OnChoppingEnd()
+    public void ChoppingEndedCallback()
     {
         Debug.Log("chopping");
     }

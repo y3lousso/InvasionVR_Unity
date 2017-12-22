@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Defender : MonoBehaviour {
+public class Defender : Townie
+{
 
     [Header("Trigger")]
     public List<Enemy> enemiesInRange = new List<Enemy>();
@@ -11,14 +12,11 @@ public class Defender : MonoBehaviour {
     public float rotationSpeed = 20f;
 
     //[Header("Animator")]
-    private Animator animator;
     //public float animationSpeed;
 
     [Header("Attack")]
     public GameObject projectile;
     public Transform projectileSpawn;
-
-
 
     protected void OnEnable()
     {
@@ -37,14 +35,15 @@ public class Defender : MonoBehaviour {
     }
 
     // Use this for initialization
-    public virtual void Start()
+    protected override void Start()
     {
+        base.Start();
         defenderTrigger = GetComponentInChildren<DefenderTrigger>();
-        animator = GetComponent<Animator>();
     }
 
-    public virtual void Update()
+    protected override void Update()
     {
+        base.Update();
         if (enemiesInRange.Count > 0)
         {
             animator.SetBool("IsAttacking", true);

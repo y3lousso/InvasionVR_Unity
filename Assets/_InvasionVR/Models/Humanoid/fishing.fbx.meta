@@ -195,7 +195,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.97151
-        functionName: FishingEnd
+        functionName: FishingEndedCallback
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

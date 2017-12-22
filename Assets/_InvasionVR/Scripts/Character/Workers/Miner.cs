@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Miner : Townie
-{    
+{
 
     // Use this for initialization
     protected override void Start()
     {
-
+        base.Start();
     }
 
     // Update is called once per frame
     protected override void Update()
     {
-
+        base.Update();
     }
 
     public override void StartWork()
@@ -27,7 +27,7 @@ public class Miner : Townie
         animator.SetBool("IsMining", false);
     }
 
-    public void OnMiningEnd()
+    public void MiningEndedCallback()
     {
         Debug.Log("mining");
     }

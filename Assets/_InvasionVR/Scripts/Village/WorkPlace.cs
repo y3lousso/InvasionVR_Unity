@@ -5,14 +5,21 @@ using UnityEngine;
 public class WorkPlace : MonoBehaviour
 {
     private WorkPlaceManager workPlaceManager;
-
-    public WorkPlaceType type;
     public Townie townie;
+
+    public Transform attachPoint;
+
+    // Workers
+    public GameObject basicTowniePrefab;
+    public GameObject associatedTowniePrefab;
 
     // Use this for initialization
     void Start()
     {
-
+        if(basicTowniePrefab == null || associatedTowniePrefab == null)
+            Debug.LogError("Missing a prefab.");
+        if (attachPoint == null)
+            Debug.LogError("Missing a attachPoint.");
     }
 
     // Update is called once per frame
@@ -21,23 +28,17 @@ public class WorkPlace : MonoBehaviour
 
     }
 
-    public void OnRemoveAdded()
+    public void OnWorkerAdded()
     {
-        switch (type)
+        if (townie == null)
         {
-            case (WorkPlaceType.lake):
-                // remove townie
-                // add fisherman
-                break;
-            case (WorkPlaceType.forest):
-                // remove townie
-                // add chopper
-                break;
-            case (WorkPlaceType.mine):
-                // remove townie
-                // add miner
-                break;
-            default: break;
+            AddTownie(associatedTowniePrefab);
+            if(townie is Chopper)
+                ((Chopper)townie).StartWork();
+        }
+        else
+        {
+            Debug.Log("Can't add a townie where someone is already working.");
         }
     }
 
@@ -46,11 +47,19 @@ public class WorkPlace : MonoBehaviour
         // remove worker
         // add townie
     }
-}
 
-public enum WorkPlaceType
-{
-    lake,
-    forest,
-    mine
+    private void AddTownie(GameObject townieToAdd)
+    {
+        GameObject current;
+        current = Instantiate(townieToAdd, attachPoint.position, attachPoint.rotation);
+        if (current == null)
+        {
+            Debug.LogError("Prefab doesn't have a townie component.");
+        }
+        else
+        {
+            townie = current.GetComponent<Townie>();
+            townie.SetWorkPlace(this);
+        }
+    }
 }

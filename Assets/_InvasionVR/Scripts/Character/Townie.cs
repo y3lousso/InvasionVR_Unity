@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class Townie : MonoBehaviour {
 
     protected WorkPlace workPlace;
@@ -10,7 +11,7 @@ public class Townie : MonoBehaviour {
     // Use this for initialization
     protected virtual void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
