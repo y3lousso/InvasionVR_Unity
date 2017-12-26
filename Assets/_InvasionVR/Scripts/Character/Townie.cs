@@ -2,16 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Animator), typeof(VRTK.VRTK_InteractableObject))]
 public class Townie : MonoBehaviour {
 
     protected WorkPlace workPlace;
     protected Animator animator;
-   
+    protected VRTK.VRTK_InteractableObject interactableObject;
+
+    protected virtual void Awake()
+    {
+        // Init components
+        animator = GetComponent<Animator>();
+        interactableObject = GetComponent<VRTK.VRTK_InteractableObject>();
+
+        // Subscribe to events
+        interactableObject.InteractableObjectGrabbed += OnTownieGrabbed;
+    }
+
+    protected virtual void OnTownieGrabbed(object sender, VRTK.InteractableObjectEventArgs e)
+    {
+        if(workPlace != null)
+        {
+            workPlace.OnWorkerRemoved(sender, e);
+        }
+    }
+
     // Use this for initialization
     protected virtual void Start()
     {
-        animator = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame

@@ -5,20 +5,26 @@ using UnityEngine;
 public class WorkPlace : MonoBehaviour
 {
     private WorkPlaceManager workPlaceManager;
-    public Townie townie;
+    private Townie townie;
 
-    public Transform attachPoint;
+    private VRTK.VRTK_SnapDropZone snapZone;
 
     // Workers
     public GameObject basicTowniePrefab;
     public GameObject associatedTowniePrefab;
 
+    private void Awake()
+    {
+        snapZone = GetComponentInChildren<VRTK.VRTK_SnapDropZone>();
+        snapZone.ObjectSnappedToDropZone += OnWorkerAdded;
+    }
+
     // Use this for initialization
     void Start()
-    {
-        if(basicTowniePrefab == null || associatedTowniePrefab == null)
+    {      
+        if (basicTowniePrefab == null || associatedTowniePrefab == null)
             Debug.LogError("Missing a prefab.");
-        if (attachPoint == null)
+        if (snapZone == null)
             Debug.LogError("Missing a attachPoint.");
     }
 
@@ -28,13 +34,14 @@ public class WorkPlace : MonoBehaviour
 
     }
 
-    public void OnWorkerAdded()
+    public void OnWorkerAdded(object o, VRTK.SnapDropZoneEventArgs e)
     {
+        Destroy(e.snappedObject);
         if (townie == null)
         {
-            AddTownie(associatedTowniePrefab);
-            if(townie is Chopper)
-                ((Chopper)townie).StartWork();
+            AddTownie();
+            if (townie is Chopper)
+                ((Chopper)townie).StartWork();             
         }
         else
         {
@@ -42,16 +49,18 @@ public class WorkPlace : MonoBehaviour
         }
     }
 
-    public void OnWorkerRemoved()
+    public void OnWorkerRemoved(object o, VRTK.InteractableObjectEventArgs e)
     {
-        // remove worker
-        // add townie
+        VRTK.VRTK_InteractGrab controller = e.interactingObject.GetComponent<VRTK.VRTK_InteractGrab>();       
+        Transform currentTransform = townie.transform;
+        Destroy(townie.gameObject);
+        GameObject current = Instantiate(basicTowniePrefab, currentTransform.position, currentTransform.rotation);
+        controller.AttemptGrab();
     }
 
-    private void AddTownie(GameObject townieToAdd)
+    private void AddTownie()
     {
-        GameObject current;
-        current = Instantiate(townieToAdd, attachPoint.position, attachPoint.rotation);
+        GameObject current = Instantiate(associatedTowniePrefab, snapZone.transform.position, snapZone.transform.rotation);
         if (current == null)
         {
             Debug.LogError("Prefab doesn't have a townie component.");

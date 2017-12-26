@@ -351,6 +351,9 @@ GameObject:
   - component: {fileID: 4675820116901808}
   - component: {fileID: 95070587030884578}
   - component: {fileID: 114246636249113308}
+  - component: {fileID: 114765522482112856}
+  - component: {fileID: 114053917545459178}
+  - component: {fileID: 136762034709000600}
   m_Layer: 0
   m_Name: Fisherman
   m_TagString: Untagged
@@ -1688,7 +1691,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1187282364563312}
   m_LocalRotation: {x: -0, y: 0.99996215, z: -0, w: 0.008710323}
-  m_LocalPosition: {x: -0.686, y: 0, z: 3.5}
+  m_LocalPosition: {x: 1.309202, y: -0.009, z: 4.171896}
   m_LocalScale: {x: 0.16201733, y: 0.1620172, z: 0.1620174}
   m_Children:
   - {fileID: 4541866050714418}
@@ -2090,6 +2093,25 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114053917545459178
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1187282364563312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8afa0b205791c9f4496bf2814aeac078, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 1
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+  destroyImmediatelyOnThrow: 1
+  breakForce: 1500
 --- !u!114 &114246636249113308
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2101,6 +2123,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e505676f758e9549b2c4dcd9409b12f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114765522482112856
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1187282364563312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  touchHighlightColor: {r: 0.8206897, g: 1, b: 0, a: 0}
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 1
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 114053917545459178}
+  secondaryGrabActionScript: {fileID: 0}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  usingState: 0
+--- !u!136 &136762034709000600
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1187282364563312}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!137 &137605025818337038
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -2115,7 +2180,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 27f92c7579a6d4440b82f9e525b01191, type: 2}
+  - {fileID: 2100000, guid: 10987b28cce5f9a4d963c1a3d3317df8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2213,7 +2278,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 369305fcecdb2764180e6e390ae176ce, type: 2}
+  - {fileID: 2100000, guid: 053a1782e5e004f418c08b0504be98db, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

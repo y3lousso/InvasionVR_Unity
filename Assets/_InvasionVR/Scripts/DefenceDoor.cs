@@ -31,7 +31,6 @@ public class DefenceDoor : MonoBehaviour {
         {
             enemy.ChangeState(EnemyState.Attacking);
             attackers.Add(enemy);
-            Debug.Log("good");
         }
     }
 }

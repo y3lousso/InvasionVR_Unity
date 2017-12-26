@@ -16,6 +16,11 @@ public class Chopper : Townie
         base.Update();
     }
 
+    protected override void OnTownieGrabbed(object sender, VRTK.InteractableObjectEventArgs e)
+    {
+        base.OnTownieGrabbed(sender,e); 
+    }
+
     public override void StartWork()
     {
         Start();

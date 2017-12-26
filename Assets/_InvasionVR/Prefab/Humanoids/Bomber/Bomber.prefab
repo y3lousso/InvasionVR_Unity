@@ -1001,6 +1001,9 @@ GameObject:
   - component: {fileID: 4635913865590644}
   - component: {fileID: 95395891402302220}
   - component: {fileID: 114288321856598708}
+  - component: {fileID: 114267265808177410}
+  - component: {fileID: 114913071888910840}
+  - component: {fileID: 136381686317215074}
   m_Layer: 0
   m_Name: Bomber
   m_TagString: Untagged
@@ -1658,9 +1661,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1890331582231774}
-  m_LocalRotation: {x: 0.0061591286, y: 0.70707995, z: 0.70708007, w: 0.0061591277}
-  m_LocalPosition: {x: -0.00021541568, y: -0.00028876856, z: 0.0101095}
-  m_LocalScale: {x: 0.004678548, y: 0.0046785376, z: 0.004678549}
+  m_LocalRotation: {x: -0, y: 0.99996215, z: -0, w: 0.008710323}
+  m_LocalPosition: {x: 1.667, y: -0.009, z: 4.157}
+  m_LocalScale: {x: 0.16201733, y: 0.1620172, z: 0.1620174}
   m_Children:
   - {fileID: 4164976027072274}
   - {fileID: 4799855895175870}
@@ -2204,6 +2207,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7512d07c120824a80fc8227ac1ce89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114267265808177410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1890331582231774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  touchHighlightColor: {r: 0.8206897, g: 1, b: 0, a: 0}
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 1
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 114913071888910840}
+  secondaryGrabActionScript: {fileID: 0}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  usingState: 0
 --- !u!114 &114288321856598708
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2220,6 +2253,25 @@ MonoBehaviour:
   rotationSpeed: 20
   projectile: {fileID: 1257506705504662, guid: 5f35fc4fb531fc34aa7d54e5754040b2, type: 2}
   projectileSpawn: {fileID: 4795590043134556}
+--- !u!114 &114913071888910840
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1890331582231774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8afa0b205791c9f4496bf2814aeac078, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 1
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 0
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
+  destroyImmediatelyOnThrow: 1
+  breakForce: 1500
 --- !u!135 &135488510898789062
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -2232,6 +2284,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &136381686317215074
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1890331582231774}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!137 &137128395654218058
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
