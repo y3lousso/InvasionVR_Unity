@@ -9,6 +9,9 @@ public class VillageManager : MonoBehaviour {
     private ForestManager forestManager;
     private MineManager mineManager;
 
+    public GameObject towniePrefab;
+    public Transform spawnLocation;
+
     [Header("Village spec")]
     public int hp = 100;
 
@@ -62,5 +65,10 @@ public class VillageManager : MonoBehaviour {
         {
             level.LeveLost();
         }
+    }
+
+    public void AddNewTownie()
+    {
+        Instantiate(towniePrefab, spawnLocation.position, spawnLocation.rotation);
     }
 }
